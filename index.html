@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+    <title>shop win | الإيداع والسحب</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        /* 🔴🔴🔴 ضع رابط صورتك هنا 🔴🔴🔴 */
+        body {
+            font-family: 'Tajawal', sans-serif;
+            padding: 12px;
+            min-height: 100vh;
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHFu1vVA7MYNHeEJfW3GIOydNLXp9cLNsvMQ&s") no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            transition: all 0.3s;
+        }
+        
+        body.light {
+            background: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRHFu1vVA7MYNHeEJfW3GIOydNLXp9cLNsvMQ&s") no-repeat center center fixed;
+            background-size: cover;
+            color: #1a1a2e;
+        }
+        /* 🔴🔴🔴 انتهى مكان الصورة 🔴🔴🔴 */
+        
+        .container { max-width: 500px; margin: 0 auto; }
+        
+        .header {
+            background: rgba(0,0,0,0.7);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
+            padding: 14px;
+            text-align: center;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,180,71,0.5);
+        }
+        body.light .header {
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(10px);
+        }
+        .logo { font-size: 1.5rem; font-weight: 800; }
+        .clock { background: rgba(0,0,0,0.4); padding: 4px 12px; border-radius: 40px; display: inline-block; margin-top: 8px; font-size: 0.7rem; }
+        
+        .bonus {
+            background: rgba(30,58,95,0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 10px;
+            text-align: center;
+            font-size: 0.75rem;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,180,71,0.3);
+        }
+        body.light .bonus { background: rgba(232,200,154,0.9); color: #2C3E50; }
+        
+        .services {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        .service {
+            flex: 1;
+            background: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 10px;
+            text-align: center;
+            border: 1px solid rgba(255,180,71,0.3);
+        }
+        body.light .service { background: rgba(0,0,0,0.1); }
+        .service-icon { font-size: 1.3rem; color: #FFB347; }
+        .service-title { font-size: 0.7rem; margin: 5px 0; }
+        .promo-code { background: rgba(0,0,0,0.4); padding: 4px 8px; border-radius: 30px; font-size: 0.8rem; display: inline-block; margin-bottom: 5px; font-weight: bold; letter-spacing: 1px; }
+        .copy-btn, .whatsapp-btn { background: #FFB347; border: none; padding: 4px 10px; border-radius: 30px; font-size: 0.65rem; cursor: pointer; color: #1a1a2e; font-weight: bold; }
+        .register-link { display: inline-block; background: rgba(255,180,71,0.2); border: 1px solid #FFB347; border-radius: 30px; padding: 5px 10px; text-decoration: none; color: #FFE5B4; font-size: 0.7rem; width: 100%; }
+        body.light .register-link { color: #E65C00; }
+        
+        .enter-btn {
+            background: linear-gradient(95deg, #0F4C3A, #1B7E5C);
+            border: none;
+            border-radius: 50px;
+            padding: 12px;
+            width: 100%;
+            color: #FFE0A3;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            cursor: pointer;
+        }
+        
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+            background: rgba(0,0,0,0.3);
+            padding: 5px;
+            border-radius: 60px;
+        }
+        .tab {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            border-radius: 50px;
+            background: transparent;
+            color: #B0B8D0;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+        }
+        .tab.active { background: linear-gradient(95deg, #0F4C3A, #1B7E5C); color: #FFE0A3; box-shadow: 0 5px 15px rgba(27,126,92,0.3); }
+        .tab.withdraw.active { background: linear-gradient(95deg, #4A1D6D, #7B2F9D); color: #FFE0A3; box-shadow: 0 5px 15px rgba(123,47,157,0.3); }
+        
+        .card {
+            background: rgba(12,20,35,0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255,180,71,0.3);
+        }
+        body.light .card { background: rgba(255,255,255,0.9); border: 1px solid rgba(255,140,26,0.2); }
+        .card-title {
+            color: #FFB347;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin-bottom: 12px;
+            border-right: 3px solid #FFB347;
+            padding-right: 10px;
+        }
+        body.lang-fr .card-title, body.lang-en .card-title {
+            border-right: none;
+            border-left: 3px solid #FFB347;
+            padding-right: 0;
+            padding-left: 10px;
+        }
+        
+        .transfer-info {
+            background: rgba(255,140,26,0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 20px;
+            padding: 12px;
+            margin-bottom: 15px;
+            display: none;
+            border: 1px solid rgba(255,140,26,0.3);
+        }
+        .transfer-info.show { display: block; }
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 8px 0;
+            font-size: 0.7rem;
+            border-bottom: 1px dashed rgba(255,140,26,0.3);
+        }
+        .info-copy { background: rgba(255,180,71,0.2); border: 1px solid #FFB347; border-radius: 20px; padding: 2px 8px; font-size: 0.6rem; cursor: pointer; color: #FFB347; }
+        
+        .banks {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin: 12px 0;
+        }
+        .bank {
+            background: rgba(20,30,55,0.7);
+            backdrop-filter: blur(5px);
+            border-radius: 16px;
+            padding: 10px 5px;
+            text-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(255,180,71,0.3);
+            transition: all 0.2s;
+        }
+        body.light .bank { background: rgba(0,0,0,0.1); }
+        .bank.active { border-color: #FFD966; background: linear-gradient(135deg, rgba(255,200,100,0.2), rgba(255,140,26,0.1)); transform: scale(0.98); }
+        .bank-logo {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(145deg, #1a1f30, #111625);
+            border-radius: 12px;
+            border: 1px solid rgba(255,180,71,0.3);
+        }
+        body.light .bank-logo { background: linear-gradient(145deg, #e8ecf2, #dce0e8); }
+        .bank-logo img { width: 100%; height: 100%; object-fit: contain; border-radius: 12px; }
+        .bank-logo .fallback { font-size: 1.3rem; font-weight: bold; color: #FFD966; }
+        .bank-name { font-size: 0.6rem; font-weight: bold; }
+        
+        .input-group { margin-bottom: 15px; }
+        .input-label { font-size: 0.75rem; margin-bottom: 5px; color: #FFB347; font-weight: bold; display: flex; align-items: center; gap: 5px; }
+        .input-field {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(0,0,0,0.4);
+            border: 2px solid rgba(255,200,100,0.25);
+            border-radius: 24px;
+            padding: 2px 16px;
+            transition: all 0.2s;
+        }
+        body.light .input-field { background: rgba(240,242,245,0.9); border-color: #ddd; }
+        .input-field:focus-within { border-color: #FFB347; box-shadow: 0 0 0 2px rgba(255,180,71,0.2); }
+        .input-field input {
+            background: transparent;
+            border: none;
+            outline: none;
+            padding: 10px 2px;
+            width: 100%;
+            color: inherit;
+            font-size: 0.85rem;
+        }
+        .quick-amounts { display: flex; gap: 8px; margin-top: 8px; flex-wrap: wrap; }
+        .quick { background: rgba(255,140,26,0.2); border: 1px solid #FFB347; border-radius: 50px; padding: 5px 14px; font-size: 0.7rem; cursor: pointer; font-weight: bold; transition: all 0.2s; }
+        .quick:hover { background: #FFB347; color: #1E1A2F; }
+        .upload-area {
+            border: 2px dashed #FFB347;
+            border-radius: 24px;
+            padding: 12px;
+            text-align: center;
+            cursor: pointer;
+            margin: 12px 0;
+            background: rgba(0,0,0,0.3);
+            transition: all 0.2s;
+        }
+        .upload-area:hover { background: rgba(255,180,71,0.2); }
+        .submit {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(105deg, #FF8C1A, #FFB347);
+            border: none;
+            border-radius: 60px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .submit:active { transform: scale(0.97); }
+        .bonus-preview {
+            background: linear-gradient(95deg, #FFE5CC, #FFD9B5);
+            padding: 8px;
+            border-radius: 40px;
+            text-align: center;
+            font-size: 0.75rem;
+            margin: 10px 0;
+            color: #8B3D00;
+            font-weight: bold;
+        }
+        .hidden { display: none; }
+        .show-block { display: block; }
+        
+        .bottom-nav {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            right: 10px;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            padding: 8px 16px;
+            display: flex;
+            justify-content: space-around;
+            border: 1px solid rgba(255,180,71,0.3);
+        }
+        body.light .bottom-nav { background: rgba(255,255,255,0.95); border: 1px solid #FFD966; }
+        .nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            cursor: pointer;
+            font-size: 0.6rem;
+            color: #FFB347;
+            font-weight: bold;
+        }
+        .nav-item i { font-size: 1.1rem; }
+        
+        .toast {
+            position: fixed;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #FFB347;
+            color: #1E1A2F;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            z-index: 2000;
+            animation: fadeUp 0.3s ease;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateX(-50%) translateY(10px); }
+            to { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            flex-direction: column;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid rgba(255,180,71,0.3);
+            border-top: 3px solid #FFB347;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        .footer { text-align: center; padding: 15px 0 60px; font-size: 0.6rem; color: #8892b0; }
+        .back-btn {
+            background: linear-gradient(135deg, rgba(0,0,0,0.6), rgba(0,0,0,0.4));
+            border: 1px solid rgba(255,180,71,0.5);
+            color: #FFB347;
+            font-size: 0.8rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 15px;
+            padding: 8px 20px;
+            border-radius: 50px;
+            transition: all 0.2s;
+        }
+        .back-btn:hover { background: rgba(255,180,71,0.2); transform: translateX(-3px); }
+        
+        /* رسائل الحدود */
+        .limit-hint {
+            font-size: 0.6rem;
+            color: #FFB347;
+            margin-top: 5px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <div class="logo">🏆 shop win ✦ <span id="brandSpan">شحن فوري</span></div>
+        <div class="clock"><i class="fas fa-clock"></i> <span id="clock">--:--:--</span></div>
+    </div>
+
+    <div id="appSection">
+        <div class="bonus" id="bonusText">🎁 5% مكافأة عند التسجيل بالكود YOUBI20 ابتداءً من 50 درهم</div>
+        
+        <div class="services">
+            <div class="service">
+                <div class="service-icon"><i class="fas fa-ticket-alt"></i></div>
+                <div class="service-title" id="promoTitle">كود الترويجي</div>
+                <div class="promo-code">YOUBI20</div>
+                <button class="copy-btn" onclick="copyCode()" id="copyBtn">نسخ</button>
+            </div>
+            <div class="service">
+                <div class="service-icon"><i class="fas fa-user-plus"></i></div>
+                <div class="service-title" id="registerTitle">التسجيل</div>
+                <a href="https://winwin14004.pro/fr/mobile" target="_blank" class="register-link" id="registerLink">WinWin</a>
+            </div>
+            <div class="service">
+                <div class="service-icon"><i class="fab fa-whatsapp"></i></div>
+                <div class="service-title" id="supportTitle">الدعم الفني</div>
+                <div class="support-desc" id="supportDesc" style="font-size:0.6rem; margin:3px 0;">مشكلة في الإيداع أو السحب؟</div>
+                <button class="whatsapp-btn" onclick="openWhatsApp()" id="whatsappBtn">واتساب</button>
+            </div>
+        </div>
+        
+        <button class="enter-btn" onclick="enterApp()" id="enterBtn">🔐 للإيداع والسحب اضغط هنا</button>
+    </div>
+
+    <div id="transactionSection" style="display:none;">
+        <button class="back-btn" onclick="backToApps()" id="backBtn"><i class="fas fa-arrow-right"></i> <span>رجوع</span></button>
+        
+        <div class="tabs">
+            <button class="tab active" id="depositTabBtn" onclick="showDeposit()"><i class="fas fa-exchange-alt"></i> <span>إيداع</span></button>
+            <button class="tab withdraw" id="withdrawTabBtn" onclick="showWithdraw()"><i class="fas fa-wallet"></i> <span>سحب</span></button>
+        </div>
+        
+        <div id="depositDiv">
+            <div class="card">
+                <div id="transferInfo" class="transfer-info">
+                    <h4 style="font-size:0.8rem; margin-bottom:8px;"><i class="fas fa-university"></i> <span id="transferTitle">معلومات التحويل الخاصة بنا</span></h4>
+                    <div class="info-row"><span>🏦 <span id="bankLabel">البنك</span>:</span> <span><span id="infoBank">-</span></span></div>
+                    <div class="info-row"><span>🔢 <span id="accountLabel">رقم الحساب</span>:</span> <span><span id="infoAccount">-</span> <button class="info-copy" onclick="copyText('infoAccount')"><i class="fas fa-copy"></i> <span id="copyAccountBtn">نسخ</span></button></span></div>
+                    <div class="info-row"><span>👤 <span id="holderNameLabel">اسم الحساب</span>:</span> <span>shop win <button class="info-copy" onclick="copyFixedText('shop win')"><i class="fas fa-copy"></i> <span id="copyNameBtn">نسخ</span></button></span></div>
+                    <div class="info-row"><span>📝 <span id="reasonLabel">سبب التحويل</span>:</span> <span>dépôt shop win <button class="info-copy" onclick="copyFixedText('dépôt shop win')"><i class="fas fa-copy"></i> <span id="copyReasonBtn">نسخ</span></button></span></div>
+                    <div class="info-row"><span>💱 <span id="currencyLabel">العملة</span>:</span> <span>MAD</span></div>
+                </div>
+                <div class="card-title" id="step1Title"><i class="fas fa-landmark"></i> <span>1. اختر البنك المحول منه</span></div>
+                <div class="banks" id="banksList"></div>
+                <div id="depositFields" class="hidden">
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-coins"></i> <span id="amountLabel">المبلغ</span></div>
+                        <div class="input-field"><span style="color:#FFB347; font-weight:bold;">MAD</span><input type="number" id="amount" value="20" min="20" max="20000" step="10"></div>
+                        <div class="quick-amounts" id="quickAmounts"></div>
+                        <small class="limit-hint" id="depositLimitHint">💰 من 20 إلى 20,000 درهم</small>
+                    </div>
+                    <div id="bonusPreview" class="bonus-preview"></div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-id-card"></i> <span id="playerIdLabel">رقم حساب اللاعب (ID)</span></div>
+                        <div class="input-field"><i class="fas fa-user-circle"></i><input type="text" id="playerId" placeholder="أدخل رقم حسابك"></div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label"><i class="fas fa-user-tie"></i> <span id="bankHolderLabel">اسم صاحب الحساب البنكي</span></div>
+                        <div class="input-field"><i class="fas fa-signature"></i><input type="text" id="holderName" placeholder="الاسم كما في البطاقة"></div>
+                    </div>
+                    <div class="input-group" id="senderGroup">
+                        <div class="input-label" id="senderLabel"><i class="fas fa-credit-card"></i> <span>رقم الحساب المرسل منه</span></div>
+                        <div class="input-field"><i class="fas fa-credit-card" id="senderIcon"></i><input type="text" id="senderAccount" placeholder="أدخل رقم الحساب"></div>
+                    </div>
+                    <div class="upload-area" onclick="document.getElementById('fileInput').click()">
+                        <i class="fas fa-cloud-upload-alt" style="font-size:1.5rem; color:#FFB347;"></i>
+                        <p id="uploadText">📎 إرفاق إيصال التحويل</p>
+                        <input type="file" id="fileInput" hidden accept="image/*">
+                        <img id="preview" style="max-width:100%; margin-top:8px; border-radius:12px; display:none;">
+                    </div>
+                    <button class="submit" onclick="sendDeposit()" id="submitDepositBtn"><i class="fas fa-check-circle"></i> <span>تأكيد الإيداع</span></button>
+                    <div id="depositMsg" class="bonus-preview" style="margin-top:10px; display:none;"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="withdrawDiv" style="display:none;">
+            <div class="card">
+                <div class="card-title" id="withStep1Title"><i class="fas fa-hand-holding-usd"></i> <span>1. اختر البنك المستلم</span></div>
+                <div class="banks" id="withdrawBanksList"></div>
+                <div id="withdrawFields" class="hidden">
+                    <div class="input-group">
+                        <div class="input-label" id="withAmountLabel"><i class="fas fa-coins"></i> <span>المبلغ المراد سحبه</span></div>
+                        <div class="input-field"><span style="color:#FFB347; font-weight:bold;">MAD</span><input type="number" id="withdrawAmount" value="100" min="100" max="12000" step="50"></div>
+                        <div class="quick-amounts" id="withdrawQuick"></div>
+                        <small class="limit-hint" id="withdrawLimitHint">💰 من 100 إلى 12,000 درهم</small>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label" id="codeLabel"><i class="fas fa-key"></i> <span>كود السحب</span></div>
+                        <div class="input-field"><i class="fas fa-key"></i><input type="text" id="withdrawCode" placeholder="أدخل الكود"></div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label" id="withPlayerIdLabel"><i class="fas fa-id-card"></i> <span>رقم حساب اللاعب (ID)</span></div>
+                        <div class="input-field"><i class="fas fa-user-circle"></i><input type="text" id="withdrawPlayerId" placeholder="رقم حسابك"></div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label" id="ribLabel"><i class="fas fa-credit-card"></i> <span>رقم الحساب البنكي (RIB)</span></div>
+                        <div class="input-field"><i class="fas fa-credit-card"></i><input type="text" id="rib" placeholder="أدخل رقم الحساب"></div>
+                    </div>
+                    <div class="input-group">
+                        <div class="input-label" id="withHolderLabel"><i class="fas fa-user"></i> <span>اسم صاحب الحساب</span></div>
+                        <div class="input-field"><i class="fas fa-user"></i><input type="text" id="withdrawHolder" placeholder="الاسم الكامل"></div>
+                    </div>
+                    <button class="submit" onclick="sendWithdraw()" id="submitWithdrawBtn"><i class="fas fa-paper-plane"></i> <span>طلب سحب</span></button>
+                    <div id="withdrawMsg" class="bonus-preview" style="margin-top:10px; display:none;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer">© 2026 shop win - <span id="copyrightText">جميع الحقوق محفوظة</span></div>
+</div>
+
+<div class="bottom-nav">
+    <div class="nav-item" onclick="toggleTheme()"><i class="fas fa-palette"></i><span id="themeText">مظهر</span></div>
+    <div class="nav-item" id="langBtn"><i class="fas fa-globe"></i><span id="langText">اللغة</span></div>
+    <div class="nav-item" onclick="openWhatsApp()"><i class="fab fa-whatsapp"></i><span id="supportBottomText">الدعم</span></div>
+</div>
+
+<div id="loading" class="loading"><div class="spinner"></div><p style="margin-top:12px; color:white;" id="loadingText">جاري المعالجة...</p></div>
+
+<script>
+    // ==================== البيانات ====================
+    const FORMSPREE = "https://formspree.io/f/xreonked";
+    const SUPPORT = "212719574124";
+    const PROMO = "YOUBI20";
+    
+    // حدود المبالغ الجديدة
+    const MIN_DEPOSIT = 20;
+    const MAX_DEPOSIT = 20000;
+    const MIN_WITHDRAW = 100;
+    const MAX_WITHDRAW = 12000;
+    
+    // 🔴🔴🔴 أضف روابط صور البنوك هنا 🔴🔴🔴
+    const banks = [
+        { id: "attijari", nameAr: "التجاري وفا بنك", nameFr: "Attijariwafa Bank", nameEn: "Attijariwafa Bank", letter: "A", account: "007555000761230040115728", cash: false, image: "data:image/png;base64,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" }, 
+        { id: "bmce", nameAr: "BMCE بنك أفريقيا", nameFr: "BMCE Bank of Africa", nameEn: "BMCE Bank of Africa", letter: "B", account: "011450000010200000743997", cash: false, image: "data:image/png;base64,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" },
+        { id: "cih", nameAr: "CIH بنك", nameFr: "CIH Bank", nameEn: "CIH Bank", letter: "C", account: "4720228211018000", cash: false, image: "data:image/png;base64,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" },
+     { id: "cashplus", nameAr: "كاش بلوس", nameFr: "Cash Plus", nameEn: "Cash Plus", letter: "$", account: "0647472893", cash: true, image: "data:image/jpeg;base64,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" },   { id: "barid", nameAr: "بريد بنك", nameFr: "Barid Bank", nameEn: "Barid Bank", letter: "ب", account: "13253192", cash: false, image: "data:image/jpeg;base64,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" },
+        { id: "wafacash", nameAr: "وفاكاش", nameFr: "Wafacash", nameEn: "Wafacash", letter: "و", account: "06474728931", cash: true, image: "data:image/png;base64,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" }
+    ];
+    
+    let currentLang = "ar";
+    let selectedBank = null;
+    let selectedWithdrawBank = null;
+    let depositImage = null;
+    let currentTheme = "dark";
+    
+    // ==================== الترجمة ====================
+    const lang = {
+        ar: {
+            copy: "نسخ", promoTitle: "كود الترويجي", registerTitle: "التسجيل", supportTitle: "الدعم الفني", supportDesc: "مشكلة في الإيداع أو السحب؟", whatsappBtn: "تواصل عبر واتساب", enterBtn: "🔐 للإيداع والسحب اضغط هنا",
+            backBtn: "رجوع", depositTab: "إيداع", withdrawTab: "سحب", transferTitle: "معلومات التحويل الخاصة بنا", bankLabel: "البنك", accountLabel: "رقم الحساب", holderNameLabel: "اسم الحساب",
+            reasonLabel: "سبب التحويل", currencyLabel: "العملة", copyAccount: "نسخ", copyName: "نسخ", copyReason: "نسخ", step1Title: "اختر البنك المحول منه", amountLabel: "المبلغ",
+            playerIdLabel: "رقم حساب اللاعب (ID)", bankHolderLabel: "اسم صاحب الحساب البنكي", senderLabel: "رقم الحساب المرسل منه",
+            uploadText: "📎 إرفاق إيصال التحويل", submitDeposit: "تأكيد الإيداع", withStep1Title: "اختر البنك المستلم", withAmountLabel: "المبلغ المراد سحبه",
+            codeLabel: "كود السحب", withPlayerIdLabel: "رقم حساب اللاعب (ID)", ribLabel: "رقم الحساب البنكي (RIB)", withHolderLabel: "اسم صاحب الحساب",
+            submitWithdraw: "طلب سحب", copyright: "جميع الحقوق محفوظة", themeText: "مظهر", langText: "اللغة", supportBottomText: "الدعم", loadingText: "جاري المعالجة...",
+            bonusMain: "🎁 5% مكافأة عند التسجيل بالكود YOUBI20 ابتداءً من 50 درهم", brand: "شحن فوري",
+            codeReq: "⚠️ أدخل كود السحب", idReq: "⚠️ رقم اللاعب مطلوب",
+            holderReq: "⚠️ اسم صاحب الحساب مطلوب", senderReq: "⚠️ رقم الحساب مطلوب", receiptReq: "❌ الرجاء رفع الإيصال", bankReq: "⚠️ اختر البنك أولاً",
+            successDep: "✅ تم استلام طلب الإيداع بنجاح!", successWith: "✅ تم استلام طلب السحب بنجاح!", error: "⚠️ فشل الإرسال", 
+            bonus: "🎁 المكافأة: +{{bonus}} MAD | الإجمالي: {{total}} MAD 🥳",
+            playerPlaceholder: "أدخل رقم حسابك", holderPlaceholder: "الاسم كما في البطاقة", senderPlaceholder: "أدخل رقم الحساب",
+            codePlaceholder: "أدخل الكود", ribPlaceholder: "أدخل رقم الحساب", withHolderPlaceholder: "الاسم الكامل", callPlaceholder: "أدخل رقم الهاتف (10 أرقام)",
+            minDeposit: "⚠️ أقل مبلغ للإيداع " + MIN_DEPOSIT + " درهم", maxDeposit: "⚠️ أكثر مبلغ للإيداع " + MAX_DEPOSIT + " درهم",
+            minWithdraw: "⚠️ أقل مبلغ للسحب " + MIN_WITHDRAW + " درهم", maxWithdraw: "⚠️ أكثر مبلغ للسحب " + MAX_WITHDRAW + " درهم",
+            depositLimit: "💰 من " + MIN_DEPOSIT + " إلى " + MAX_DEPOSIT + " درهم",
+            withdrawLimit: "💰 من " + MIN_WITHDRAW + " إلى " + MAX_WITHDRAW + " درهم"
+        },
+        fr: {
+            copy: "Copier", promoTitle: "Code promo", registerTitle: "Inscription", supportTitle: "Support technique", supportDesc: "Problème avec dépôt ou retrait?", whatsappBtn: "Contacter WhatsApp", enterBtn: "🔐 Effectuer un dépôt ou retrait",
+            backBtn: "Retour", depositTab: "Dépôt", withdrawTab: "Retrait", transferTitle: "Nos informations de transfert", bankLabel: "Banque", accountLabel: "N° de compte", holderNameLabel: "Nom du compte",
+            reasonLabel: "Motif", currencyLabel: "Devise", copyAccount: "Copier", copyName: "Copier", copyReason: "Copier", step1Title: "Choisissez la banque émettrice", amountLabel: "Montant",
+            playerIdLabel: "ID Joueur", bankHolderLabel: "Nom du titulaire du compte", senderLabel: "N° de compte émetteur",
+            uploadText: "📎 Joindre le reçu", submitDeposit: "Confirmer le dépôt", withStep1Title: "Choisissez la banque réceptrice", withAmountLabel: "Montant à retirer",
+            codeLabel: "Code de retrait", withPlayerIdLabel: "ID Joueur", ribLabel: "RIB", withHolderLabel: "Nom du titulaire",
+            submitWithdraw: "Demander le retrait", copyright: "Tous droits réservés", themeText: "Thème", langText: "Langue", supportBottomText: "Support", loadingText: "Traitement...",
+            bonusMain: "🎁 Bonus 5% à l'inscription avec code YOUBI20 dès 50 MAD", brand: "Recharge",
+            codeReq: "⚠️ Code requis", idReq: "⚠️ ID requis",
+            holderReq: "⚠️ Nom requis", senderReq: "⚠️ Compte requis", receiptReq: "❌ Veuillez joindre le reçu", bankReq: "⚠️ Choisissez une banque",
+            successDep: "✅ Demande de dépôt reçue!", successWith: "✅ Demande de retrait reçue!", error: "⚠️ Échec d'envoi",
+            bonus: "🎁 Bonus: +{{bonus}} MAD | Total: {{total}} MAD 🥳",
+            playerPlaceholder: "Votre ID", holderPlaceholder: "Nom sur carte", senderPlaceholder: "N° de compte",
+            codePlaceholder: "Code", ribPlaceholder: "N° de compte", withHolderPlaceholder: "Nom complet", callPlaceholder: "Téléphone (10 chiffres)",
+            minDeposit: "⚠️ Minimum " + MIN_DEPOSIT + " MAD", maxDeposit: "⚠️ Maximum " + MAX_DEPOSIT + " MAD",
+            minWithdraw: "⚠️ Minimum " + MIN_WITHDRAW + " MAD", maxWithdraw: "⚠️ Maximum " + MAX_WITHDRAW + " MAD",
+            depositLimit: "💰 De " + MIN_DEPOSIT + " à " + MAX_DEPOSIT + " MAD",
+            withdrawLimit: "💰 De " + MIN_WITHDRAW + " à " + MAX_WITHDRAW + " MAD"
+        },
+        en: {
+            copy: "Copy", promoTitle: "Promo code", registerTitle: "Register", supportTitle: "Support", supportDesc: "Issue with deposit or withdrawal?", whatsappBtn: "Contact WhatsApp", enterBtn: "🔐 To withdraw or deposit",
+            backBtn: "Back", depositTab: "Deposit", withdrawTab: "Withdraw", transferTitle: "Our transfer information", bankLabel: "Bank", accountLabel: "Account number", holderNameLabel: "Account name",
+            reasonLabel: "Reason", currencyLabel: "Currency", copyAccount: "Copy", copyName: "Copy", copyReason: "Copy", step1Title: "Choose your bank", amountLabel: "Amount",
+            playerIdLabel: "Player ID", bankHolderLabel: "Account holder name", senderLabel: "Sender account number",
+            uploadText: "📎 Attach receipt", submitDeposit: "Confirm deposit", withStep1Title: "Choose receiving bank", withAmountLabel: "Withdrawal amount",
+            codeLabel: "Withdrawal code", withPlayerIdLabel: "Player ID", ribLabel: "Bank account (RIB)", withHolderLabel: "Account holder name",
+            submitWithdraw: "Request withdrawal", copyright: "All rights reserved", themeText: "Theme", langText: "Language", supportBottomText: "Support", loadingText: "Processing...",
+            bonusMain: "🎁 5% bonus when registering with promo code YOUBI20 from 50 MAD", brand: "Recharge",
+            codeReq: "⚠️ Withdrawal code required", idReq: "⚠️ Player ID required",
+            holderReq: "⚠️ Name required", senderReq: "⚠️ Account required", receiptReq: "❌ Please upload receipt", bankReq: "⚠️ Select a bank first",
+            successDep: "✅ Deposit request received!", successWith: "✅ Withdrawal request received!", error: "⚠️ Sending failed",
+            bonus: "🎁 Bonus: +{{bonus}} MAD | Total: {{total}} MAD 🥳",
+            playerPlaceholder: "Your ID", holderPlaceholder: "Name on card", senderPlaceholder: "Account number",
+            codePlaceholder: "Code", ribPlaceholder: "Account number", withHolderPlaceholder: "Full name", callPlaceholder: "Phone number (10 digits)",
+            minDeposit: "⚠️ Minimum deposit " + MIN_DEPOSIT + " MAD", maxDeposit: "⚠️ Maximum deposit " + MAX_DEPOSIT + " MAD",
+            minWithdraw: "⚠️ Minimum withdrawal " + MIN_WITHDRAW + " MAD", maxWithdraw: "⚠️ Maximum withdrawal " + MAX_WITHDRAW + " MAD",
+            depositLimit: "💰 From " + MIN_DEPOSIT + " to " + MAX_DEPOSIT + " MAD",
+            withdrawLimit: "💰 From " + MIN_WITHDRAW + " to " + MAX_WITHDRAW + " MAD"
+        }
+    };
+    
+    function updateAllTexts() {
+        let t = lang[currentLang];
+        document.getElementById("brandSpan").innerText = t.brand;
+        document.getElementById("promoTitle").innerText = t.promoTitle;
+        document.getElementById("registerTitle").innerText = t.registerTitle;
+        document.getElementById("supportTitle").innerText = t.supportTitle;
+        document.getElementById("supportDesc").innerText = t.supportDesc;
+        document.getElementById("whatsappBtn").innerText = t.whatsappBtn;
+        document.getElementById("enterBtn").innerHTML = t.enterBtn;
+        document.getElementById("backBtn").innerHTML = '<i class="fas fa-arrow-right"></i> ' + t.backBtn;
+        document.getElementById("depositTabBtn").innerHTML = '<i class="fas fa-exchange-alt"></i> ' + t.depositTab;
+        document.getElementById("withdrawTabBtn").innerHTML = '<i class="fas fa-wallet"></i> ' + t.withdrawTab;
+        document.getElementById("transferTitle").innerHTML = '<i class="fas fa-university"></i> ' + t.transferTitle;
+        document.getElementById("bankLabel").innerText = t.bankLabel;
+        document.getElementById("accountLabel").innerText = t.accountLabel;
+        document.getElementById("holderNameLabel").innerText = t.holderNameLabel;
+        document.getElementById("reasonLabel").innerText = t.reasonLabel;
+        document.getElementById("currencyLabel").innerText = t.currencyLabel;
+        document.getElementById("copyAccountBtn").innerHTML = '<i class="fas fa-copy"></i> ' + t.copyAccount;
+        document.getElementById("copyNameBtn").innerHTML = '<i class="fas fa-copy"></i> ' + t.copyName;
+        document.getElementById("copyReasonBtn").innerHTML = '<i class="fas fa-copy"></i> ' + t.copyReason;
+        document.getElementById("step1Title").innerHTML = '<i class="fas fa-landmark"></i> ' + t.step1Title;
+        document.getElementById("amountLabel").innerHTML = '<i class="fas fa-coins"></i> ' + t.amountLabel;
+        document.getElementById("playerIdLabel").innerHTML = '<i class="fas fa-id-card"></i> ' + t.playerIdLabel;
+        document.getElementById("bankHolderLabel").innerHTML = '<i class="fas fa-user-tie"></i> ' + t.bankHolderLabel;
+        document.getElementById("senderLabel").innerHTML = '<i class="fas fa-credit-card"></i> ' + t.senderLabel;
+        document.getElementById("uploadText").innerHTML = t.uploadText;
+        document.getElementById("submitDepositBtn").innerHTML = '<i class="fas fa-check-circle"></i> ' + t.submitDeposit;
+        document.getElementById("withStep1Title").innerHTML = '<i class="fas fa-hand-holding-usd"></i> ' + t.withStep1Title;
+        document.getElementById("withAmountLabel").innerHTML = '<i class="fas fa-coins"></i> ' + t.withAmountLabel;
+        document.getElementById("codeLabel").innerHTML = '<i class="fas fa-key"></i> ' + t.codeLabel;
+        document.getElementById("withPlayerIdLabel").innerHTML = '<i class="fas fa-id-card"></i> ' + t.withPlayerIdLabel;
+        document.getElementById("ribLabel").innerHTML = '<i class="fas fa-credit-card"></i> ' + t.ribLabel;
+        document.getElementById("withHolderLabel").innerHTML = '<i class="fas fa-user"></i> ' + t.withHolderLabel;
+        document.getElementById("submitWithdrawBtn").innerHTML = '<i class="fas fa-paper-plane"></i> ' + t.submitWithdraw;
+        document.getElementById("copyrightText").innerText = t.copyright;
+        document.getElementById("themeText").innerText = t.themeText;
+        document.getElementById("langText").innerText = t.langText;
+        document.getElementById("supportBottomText").innerText = t.supportBottomText;
+        document.getElementById("loadingText").innerText = t.loadingText;
+        document.getElementById("bonusText").innerHTML = t.bonusMain;
+        document.getElementById("copyBtn").innerText = t.copy;
+        document.getElementById("playerId").placeholder = t.playerPlaceholder;
+        document.getElementById("holderName").placeholder = t.holderPlaceholder;
+        if(document.getElementById("senderAccount")) document.getElementById("senderAccount").placeholder = t.senderPlaceholder;
+        document.getElementById("withdrawCode").placeholder = t.codePlaceholder;
+        document.getElementById("rib").placeholder = t.ribPlaceholder;
+        document.getElementById("withdrawHolder").placeholder = t.withHolderPlaceholder;
+        document.getElementById("depositLimitHint").innerHTML = t.depositLimit;
+        document.getElementById("withdrawLimitHint").innerHTML = t.withdrawLimit;
+        updateBonusText();
+        renderAllBanks();
+    }
+    
+    function showToast(msg) {
+        let toast = document.createElement("div");
+        toast.className = "toast";
+        toast.innerHTML = msg;
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2500);
+    }
+    
+    function copyCode() { navigator.clipboard.writeText(PROMO); showToast(lang[currentLang].copy + ": " + PROMO); }
+    function copyText(id) { let t = document.getElementById(id).innerText; navigator.clipboard.writeText(t); showToast(lang[currentLang].copy + ": " + t); }
+    function copyFixedText(t) { navigator.clipboard.writeText(t); showToast(lang[currentLang].copy + ": " + t); }
+    function openWhatsApp() { window.location.href = "https://wa.me/" + SUPPORT; }
+    
+    function toggleTheme() {
+        currentTheme = currentTheme === "dark" ? "light" : "dark";
+        document.body.className = currentTheme === "dark" ? "" : "light";
+        localStorage.setItem("theme", currentTheme);
+    }
+    
+    function updateClock() {
+        let d = new Date();
+        document.getElementById("clock").innerText = d.toLocaleTimeString(currentLang === 'ar' ? 'ar-EG' : 'en-US');
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+    
+    function updateBonusText() {
+        let amt = parseInt(document.getElementById("amount").value) || 0;
+        let bonus = amt >= 50 ? Math.floor(amt * 0.05) : 0;
+        let total = amt + bonus;
+        document.getElementById("bonusPreview").innerHTML = lang[currentLang].bonus.replace("{{bonus}}", bonus).replace("{{total}}", total);
+    }
+    
+    function initQuick() {
+        document.getElementById("quickAmounts").innerHTML = '<div class="quick" data-a="20">20</div><div class="quick" data-a="50">50</div><div class="quick" data-a="100">100</div><div class="quick" data-a="500">500</div><div class="quick" data-a="1000">1000</div><div class="quick" data-a="5000">5000</div>';
+        document.getElementById("withdrawQuick").innerHTML = '<div class="quick" data-w="100">100</div><div class="quick" data-w="200">200</div><div class="quick" data-w="500">500</div><div class="quick" data-w="1000">1000</div><div class="quick" data-w="5000">5000</div><div class="quick" data-w="10000">10000</div>';
+        document.querySelectorAll("[data-a]").forEach(btn => btn.onclick = () => { document.getElementById("amount").value = btn.dataset.a; updateBonusText(); });
+        document.querySelectorAll("[data-w]").forEach(btn => btn.onclick = () => { document.getElementById("withdrawAmount").value = btn.dataset.w; });
+    }
+    
+    function renderBankElement(bank, isSelected) {
+        let name = currentLang === "ar" ? bank.nameAr : (currentLang === "fr" ? bank.nameFr : bank.nameEn);
+        let active = isSelected ? "active" : "";
+        let logoHtml = bank.image && bank.image.trim() ? `<img src="${bank.image}" alt="${name}">` : `<div class="fallback">${bank.letter}</div>`;
+        return `<div class="bank ${active}" data-id="${bank.id}">
+                    <div class="bank-logo">${logoHtml}</div>
+                    <div class="bank-name">${name}</div>
+                </div>`;
+    }
+    
+    function renderAllBanks() {
+        if(document.getElementById("banksList")) {
+            let html = "";
+            for(let b of banks) html += renderBankElement(b, selectedBank === b.id);
+            document.getElementById("banksList").innerHTML = html;
+            document.querySelectorAll("#banksList .bank").forEach(el => {
+                let id = el.dataset.id;
+                el.onclick = () => {
+                    selectedBank = id;
+                    let bank = banks.find(b => b.id === id);
+                    renderAllBanks();
+                    document.getElementById("infoBank").innerText = currentLang === "ar" ? bank.nameAr : (currentLang === "fr" ? bank.nameFr : bank.nameEn);
+                    document.getElementById("infoAccount").innerText = bank.account;
+                    document.getElementById("transferInfo").classList.add("show");
+                    document.getElementById("depositFields").className = "show-block";
+                    let isCash = bank.cash;
+                    let t = lang[currentLang];
+                    let senderLabel = document.getElementById("senderLabel");
+                    let senderIcon = document.getElementById("senderIcon");
+                    let senderInput = document.getElementById("senderAccount");
+                    if(isCash) {
+                        senderLabel.innerHTML = '<i class="fas fa-phone"></i> رقم الهاتف المرسل منه';
+                        senderIcon.className = "fas fa-phone";
+                        senderInput.placeholder = t.callPlaceholder;
+                    } else {
+                        senderLabel.innerHTML = '<i class="fas fa-credit-card"></i> ' + t.senderLabel;
+                        senderIcon.className = "fas fa-credit-card";
+                        senderInput.placeholder = t.senderPlaceholder;
+                    }
+                };
+            });
+        }
+        if(document.getElementById("withdrawBanksList")) {
+            let html = "";
+            for(let b of banks) html += renderBankElement(b, selectedWithdrawBank === b.id);
+            document.getElementById("withdrawBanksList").innerHTML = html;
+            document.querySelectorAll("#withdrawBanksList .bank").forEach(el => {
+                let id = el.dataset.id;
+                el.onclick = () => {
+                    selectedWithdrawBank = id;
+                    renderAllBanks();
+                    document.getElementById("withdrawFields").className = "show-block";
+                };
+            });
+        }
+    }
+    
+    document.getElementById("fileInput").onchange = function(e) {
+        if(e.target.files[0]) {
+            let reader = new FileReader();
+            reader.onload = ev => {
+                depositImage = ev.target.result;
+                let preview = document.getElementById("preview");
+                preview.src = ev.target.result;
+                preview.style.display = "block";
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+    };
+    
+    function enterApp() {
+        document.getElementById("appSection").style.display = "none";
+        document.getElementById("transactionSection").style.display = "block";
+        selectedBank = null;
+        selectedWithdrawBank = null;
+        renderAllBanks();
+        initQuick();
+        updateBonusText();
+    }
+    
+    function backToApps() {
+        document.getElementById("appSection").style.display = "block";
+        document.getElementById("transactionSection").style.display = "none";
+        document.getElementById("transferInfo").classList.remove("show");
+        document.getElementById("depositFields").className = "hidden";
+        document.getElementById("withdrawFields").className = "hidden";
+        selectedBank = null;
+        selectedWithdrawBank = null;
+        depositImage = null;
+        document.getElementById("preview").style.display = "none";
+        document.getElementById("fileInput").value = "";
+    }
+    
+    function showDeposit() {
+        document.getElementById("depositDiv").style.display = "block";
+        document.getElementById("withdrawDiv").style.display = "none";
+        document.getElementById("depositTabBtn").classList.add("active");
+        document.getElementById("withdrawTabBtn").classList.remove("active");
+    }
+    
+    function showWithdraw() {
+        document.getElementById("depositDiv").style.display = "none";
+        document.getElementById("withdrawDiv").style.display = "block";
+        document.getElementById("withdrawTabBtn").classList.add("active");
+        document.getElementById("depositTabBtn").classList.remove("active");
+    }
+    
+    async function sendDeposit() {
+        let t = lang[currentLang];
+        if(!selectedBank) { showToast(t.bankReq); return; }
+        let amount = parseInt(document.getElementById("amount").value);
+        if(amount < MIN_DEPOSIT) { showToast(t.minDeposit); return; }
+        if(amount > MAX_DEPOSIT) { showToast(t.maxDeposit); return; }
+        let playerId = document.getElementById("playerId").value.trim();
+        if(!playerId) { showToast(t.idReq); return; }
+        let holder = document.getElementById("holderName").value.trim();
+        if(!holder) { showToast(t.holderReq); return; }
+        let sender = document.getElementById("senderAccount").value.trim();
+        if(!sender) { showToast(t.senderReq); return; }
+        if(!depositImage) { showToast(t.receiptReq); return; }
+        
+        let bank = banks.find(b => b.id === selectedBank);
+        let bonus = amount >= 50 ? Math.floor(amount * 0.05) : 0;
+        let total = amount + bonus;
+        let bankName = currentLang === "ar" ? bank.nameAr : (currentLang === "fr" ? bank.nameFr : bank.nameEn);
+        
+        let html = `<div dir="${currentLang === 'ar' ? 'rtl' : 'ltr'}">
+                    <h2>💰 طلب إيداع جديد</h2><hr/>
+                    <p><strong>المبلغ:</strong> ${amount} MAD</p>
+                    <p><strong>المكافأة:</strong> +${bonus} MAD</p>
+                    <p><strong>الإجمالي:</strong> ${total} MAD</p>
+                    <p><strong>رقم اللاعب:</strong> ${playerId}</p>
+                    <p><strong>اسم صاحب الحساب:</strong> ${holder}</p>
+                    <p><strong>الحساب المرسل:</strong> ${sender}</p>
+                    <p><strong>البنك:</strong> ${bankName}</p>
+                    <p><strong>رقم حسابنا:</strong> ${bank.account}</p>
+                    <p><strong>الإيصال:</strong> <a href="${depositImage}">🖼️ عرض الإيصال</a></p>
+                    </div>`;
+        
+        document.getElementById("loading").style.display = "flex";
+        try {
+            let res = await fetch(FORMSPREE, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ _subject: "💰 طلب إيداع جديد - shop win", message: html, html: html })
+            });
+            if(res.ok) {
+                showToast(t.successDep);
+                document.getElementById("depositMsg").innerHTML = '<i class="fas fa-check-circle"></i> ' + t.successDep;
+                document.getElementById("depositMsg").style.display = "block";
+                document.getElementById("playerId").value = "";
+                document.getElementById("holderName").value = "";
+                document.getElementById("senderAccount").value = "";
+                document.getElementById("amount").value = MIN_DEPOSIT;
+                depositImage = null;
+                document.getElementById("preview").style.display = "none";
+                document.getElementById("fileInput").value = "";
+                updateBonusText();
+            } else { showToast(t.error); }
+        } catch(e) { showToast(t.error); }
+        document.getElementById("loading").style.display = "none";
+        setTimeout(() => { document.getElementById("depositMsg").style.display = "none"; }, 4000);
+    }
+    
+    async function sendWithdraw() {
+        let t = lang[currentLang];
+        if(!selectedWithdrawBank) { showToast(t.bankReq); return; }
+        let code = document.getElementById("withdrawCode").value.trim();
+        if(!code) { showToast(t.codeReq); return; }
+        let amount = parseInt(document.getElementById("withdrawAmount").value);
+        if(amount < MIN_WITHDRAW) { showToast(t.minWithdraw); return; }
+        if(amount > MAX_WITHDRAW) { showToast(t.maxWithdraw); return; }
+        let playerId = document.getElementById("withdrawPlayerId").value.trim();
+        if(!playerId) { showToast(t.idReq); return; }
+        let rib = document.getElementById("rib").value.trim();
+        if(!rib) { showToast(t.senderReq); return; }
+        let holder = document.getElementById("withdrawHolder").value.trim();
+        if(!holder) { showToast(t.holderReq); return; }
+        
+        let bank = banks.find(b => b.id === selectedWithdrawBank);
+        let bankName = currentLang === "ar" ? bank.nameAr : (currentLang === "fr" ? bank.nameFr : bank.nameEn);
+        
+        let html = `<div dir="${currentLang === 'ar' ? 'rtl' : 'ltr'}">
+                    <h2>💸 طلب سحب جديد</h2><hr/>
+                    <p><strong>المبلغ:</strong> ${amount} MAD</p>
+                    <p><strong>كود السحب:</strong> ${code}</p>
+                    <p><strong>رقم اللاعب:</strong> ${playerId}</p>
+                    <p><strong>البنك المستلم:</strong> ${bankName}</p>
+                    <p><strong>RIB:</strong> ${rib}</p>
+                    <p><strong>اسم صاحب الحساب:</strong> ${holder}</p>
+                    </div>`;
+        
+        document.getElementById("loading").style.display = "flex";
+        try {
+            let res = await fetch(FORMSPREE, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ _subject: "💸 طلب سحب جديد - shop win", message: html, html: html })
+            });
+            if(res.ok) {
+                showToast(t.successWith);
+                document.getElementById("withdrawMsg").innerHTML = '<i class="fas fa-check-circle"></i> ' + t.successWith;
+                document.getElementById("withdrawMsg").style.display = "block";
+                document.getElementById("withdrawCode").value = "";
+                document.getElementById("withdrawPlayerId").value = "";
+                document.getElementById("rib").value = "";
+                document.getElementById("withdrawHolder").value = "";
+                document.getElementById("withdrawAmount").value = MIN_WITHDRAW;
+            } else { showToast(t.error); }
+        } catch(e) { showToast(t.error); }
+        document.getElementById("loading").style.display = "none";
+        setTimeout(() => { document.getElementById("withdrawMsg").style.display = "none"; }, 4000);
+    }
+    
+    // اللغة
+    document.getElementById("langBtn").onclick = () => {
+        let pop = document.createElement("div");
+        pop.className = "toast";
+        pop.style.bottom = "70px";
+        pop.style.width = "160px";
+        pop.style.padding = "10px";
+        pop.style.display = "flex";
+        pop.style.flexDirection = "column";
+        pop.style.gap = "5px";
+        pop.style.background = "#1E1F2C";
+        pop.style.color = "white";
+        pop.innerHTML = `<div style="cursor:pointer; padding:8px; border-radius:30px; text-align:center;" data-lang="ar">🇸🇦 العربية</div>
+                         <div style="cursor:pointer; padding:8px; border-radius:30px; text-align:center;" data-lang="fr">🇫🇷 Français</div>
+                         <div style="cursor:pointer; padding:8px; border-radius:30px; text-align:center;" data-lang="en">🇬🇧 English</div>`;
+        document.body.appendChild(pop);
+        pop.querySelectorAll("[data-lang]").forEach(btn => {
+            btn.onclick = () => {
+                currentLang = btn.dataset.lang;
+                document.documentElement.dir = currentLang === "ar" ? "rtl" : "ltr";
+                document.body.style.direction = currentLang === "ar" ? "rtl" : "ltr";
+                document.body.style.textAlign = currentLang === "ar" ? "right" : "left";
+                document.body.classList.remove("lang-ar", "lang-fr", "lang-en");
+                document.body.classList.add(`lang-${currentLang}`);
+                updateAllTexts();
+                pop.remove();
+            };
+            btn.onmouseover = () => btn.style.background = "#FFB347";
+            btn.onmouseout = () => btn.style.background = "transparent";
+        });
+        setTimeout(() => { if(pop.parentNode) pop.remove(); }, 5000);
+    };
+    
+    // بدء التشغيل
+    let savedTheme = localStorage.getItem("theme");
+    if(savedTheme === "light") { currentTheme = "light"; document.body.classList.add("light"); }
+    updateAllTexts();
+    initQuick();
+    updateBonusText();
+</script>
+</body>
+</html>
